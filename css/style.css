@@ -38,6 +38,8 @@ header {
     color: red; }
   #functionalBlock .green {
     color: green; }
+  #functionalBlock .blue {
+    color: blue; }
 
 #mainContainer {
   padding: 0 40px;
