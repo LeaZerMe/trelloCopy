@@ -1,0 +1,16 @@
+{
+	"name": "trello_app",
+	"version": "1.0.0",
+	"main": "webpack.config.js",
+	"scripts": {
+		"build": "webpack -p",
+		"watch": "webpack --watch"
+	},
+	"dependencies": {
+		"express": "^4.0.3"
+	},
+	"devDependencies": {
+		"webpack-cli": "^3.1.0",
+		"webpack-command": "^0.4.1"
+	}
+}
