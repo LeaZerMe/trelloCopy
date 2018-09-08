@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #ebebeb;
+  font-family: "Comic Sans MS", cursive; }
+
+header {
+  background-color: #5C36E5;
+  padding: 22px 20px 10px 20px;
+  color: #fafafa; }
+  header h3 {
+    font-size: 2.3rem; }
+  header h4 {
+    font-size: 1.5rem;
+    letter-spacing: 1px; }
