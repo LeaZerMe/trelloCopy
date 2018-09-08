@@ -4,6 +4,11 @@ body {
   background: #ebebeb;
   font-family: "Comic Sans MS", cursive; }
 
+button,
+button:active,
+button:focus {
+  outline: none; }
+
 header {
   background-color: #5C36E5;
   padding: 22px 20px 10px 20px;
@@ -14,81 +19,67 @@ header {
     font-size: 1.5rem;
     letter-spacing: 1px; }
 
+#functionalBlock {
+  margin: 20px 0 10px 0;
+  padding: 0 30px; }
+  #functionalBlock button {
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    margin: 0 5px;
+    font-size: 1.2rem;
+    border: none;
+    border-left: 3px solid grey;
+    background-color: transparent; }
+    #functionalBlock button:hover {
+      cursor: pointer;
+      border-left: 3px solid #000; }
+  #functionalBlock .red {
+    color: red; }
+  #functionalBlock .green {
+    color: green; }
+
 #mainContainer {
+  padding: 0 40px;
   margin-top: 20px; }
   #mainContainer h1 {
     margin-bottom: 20px; }
-  #mainContainer .col-auto ul {
+  #mainContainer .col ul {
     margin: 0;
     padding: 0;
     list-style: none; }
-    #mainContainer .col-auto ul li {
+    #mainContainer .col ul li {
       height: 100px;
       width: 200px; }
-  #mainContainer .col-auto .ideas {
-    -webkit-transition: all 0.6s ease;
-    -o-transition: all 0.6s ease;
-    transition: all 0.6s ease;
+  #mainContainer .col .containers {
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
     border: 2px outset #79AAE5;
     border-right: none;
     padding: 8px; }
-    #mainContainer .col-auto .ideas h4 {
-      -webkit-transition: all 0.6s ease;
-      -o-transition: all 0.6s ease;
-      transition: all 0.6s ease; }
-    #mainContainer .col-auto .ideas h6 {
-      -webkit-transition: all 0.6s ease;
-      -o-transition: all 0.6s ease;
-      transition: all 0.6s ease; }
-    #mainContainer .col-auto .ideas:hover {
-      cursor: pointer;
-      padding: 14px; }
-      #mainContainer .col-auto .ideas:hover h4 {
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-        -webkit-transform: translateY(30px);
-        -ms-transform: translateY(30px);
-        transform: translateY(30px); }
-      #mainContainer .col-auto .ideas:hover h6 {
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-        -webkit-transform: translateY(-30px);
-        -ms-transform: translateY(-30px);
-        transform: translateY(-30px); }
-  #mainContainer .col-auto .goals {
-    -webkit-transition: all 0.6s ease;
-    -o-transition: all 0.6s ease;
-    transition: all 0.6s ease;
-    border: 3px solid #E52C1B;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border-right: none;
-    padding: 12px; }
-    #mainContainer .col-auto .goals h4 {
-      font-size: 1.6rem;
-      -webkit-transition: all 0.6s ease;
-      -o-transition: all 0.6s ease;
-      transition: all 0.6s ease; }
-    #mainContainer .col-auto .goals h6 {
-      -webkit-transition: all 0.6s ease;
-      -o-transition: all 0.6s ease;
-      transition: all 0.6s ease; }
-    #mainContainer .col-auto .goals:hover {
-      cursor: pointer;
-      padding: 14px; }
-      #mainContainer .col-auto .goals:hover h4 {
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-        -webkit-transform: translateX(30px);
-        -ms-transform: translateX(30px);
-        transform: translateX(30px); }
-      #mainContainer .col-auto .goals:hover h6 {
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
+    #mainContainer .col .containers h4 {
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease; }
+    #mainContainer .col .containers h6 {
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease; }
+    #mainContainer .col .containers:hover {
+      background-color: #D7D7D7;
+      cursor: pointer; }
+      #mainContainer .col .containers:hover h4 {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
+        -webkit-transform: translateX(10px);
+        -ms-transform: translateX(10px);
+        transform: translateX(10px); }
+      #mainContainer .col .containers:hover h6 {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05);
         -webkit-transform: translateX(10px);
         -ms-transform: translateX(10px);
         transform: translateX(10px); }

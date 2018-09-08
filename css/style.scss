@@ -9,6 +9,12 @@ body {
 //	Style of the header of main page
 //
 
+button, 
+button:active, 
+button:focus {
+    outline: none;
+}
+
 header {
 	background-color: #5C36E5;
 	padding: 22px 20px 10px 20px;
@@ -25,17 +31,50 @@ header {
 }
 
 //
+//	This style create a design of of buttons block
+//	That situated under header block
+//
+
+#functionalBlock {
+	margin: 20px 0 10px 0;
+	padding: 0 30px;
+
+	button {
+		transition: 0.5s;
+		margin: 0 5px;
+		font-size: 1.2rem;
+		border: none;
+		border-left: 3px solid grey;
+		background-color: transparent;
+		
+		&:hover {
+			cursor: pointer;
+			border-left: 3px solid #000;
+		}
+	}
+
+	.red {
+		color: red;
+	}
+
+	.green {
+		color: green;
+	}
+}
+
+//
 //	Style of the main content on page
 // 	It describe blocks with ideas, goals and others
 // 
 
 #mainContainer {
+	padding: 0 40px;
 	margin-top: 20px;
 
 	h1 {
 		margin-bottom: 20px;
 	}
-	.col-auto {
+	.col {
 		ul {
 			margin: 0;
 			padding: 0;
@@ -47,66 +86,31 @@ header {
   			}
 		}
 
-		.ideas { 
-			transition: all 0.6s ease; 
+		.containers { 
+			transition: all 0.5s ease; 
 			border: 2px outset #79AAE5;
-			// border-top-left-radius: 10px;
-			// border-bottom-left-radius: 10px;
-			// border-top-right-radius: 2px;
 			border-right: none;
 
 			padding: 8px;
 			
 			h4 {
-				transition: all 0.6s ease; 
+				transition: all 0.4s ease; 
 			}
 			h6 {
-				transition: all 0.6s ease; 
+				transition: all 0.4s ease; 
 			}
 
 			&:hover {
+				background-color: #D7D7D7;
 				cursor: pointer;
-				padding: 14px;
 
 				h4 {
-					transform: scale(1.1);
-					transform: translateY(30px);
+					transform: scale(1.05);
+					transform: translateX(10px);
 				}
 
 				h6 {
-					transform: scale(1.1);
-					transform: translateY(-30px);
-				}
-			}
-		}
-
-		.goals {
-			transition: all 0.6s ease; 
-			border: 3px solid #E52C1B;
-			border-top-left-radius: 4px;
-			border-bottom-left-radius: 4px;
-			border-right: none;
-
-			padding: 12px;
-			
-			h4 {
-				font-size: 1.6rem;
-				transition: all 0.6s ease; 
-			}
-			h6 {
-				transition: all 0.6s ease; 
-			}
-
-			&:hover {
-				cursor: pointer;
-				padding: 14px;
-
-				h4 {
-					transform: scale(1.2);
-					transform: translateX(30px);
-				}
-				h6 {
-					transform: scale(1.1);
+					transform: scale(1.05);
 					transform: translateX(10px);
 				}
 			}

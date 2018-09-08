@@ -14,111 +14,175 @@
 <div id='header'></div>
 
 <!-- 
-	*	Header component, that create header of the page 
-	*	And dont take any parametrs
- -->
+*	Header component, that create header of the page 
+*	And dont take any parametrs
+-->
 
 <script type="text/babel">
-
 class Header extends React.Component {
 	
 	constructor(props) {
-		super(props)	
+		super(props)
 	}
 
 	render() {
+		
 		return (<header>				
-				<div className="container-fluid">
-				<div className="row justify-content-between align-items-center">
-				<div className="col-auto">
-					<h3>Trello</h3>
-				</div>
-				<div className="col-auto">
-					<h4>
-						Make your life
-					</h4>
-				</div>
-				</div>
-				</div></header>)
+			<div className="container-fluid">
+			<div className="row justify-content-between align-items-center">
+			<div className="col-auto">
+			<h3>Trello</h3>
+			</div>
+			<div className="col-auto">
+			<h4>
+			Make your life
+			</h4>
+			</div>
+			</div>
+			</div></header>)
 	}	
 }
 
-	ReactDOM.render(
-		<Header/>,
-		document.getElementById("header")
+ReactDOM.render(
+	<Header/>,
+	document.getElementById("header")
 	)
 </script>
 
+<!--  
+*	Block that situated under header of the page
+*	And consists of button and other button
+-->
+
+<div id="functionalBlock">
+
+</div>
+
+<script type="text/babel">
+var accessToDelete = false;	
+class FunctionBlock extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			delete: false
+		}
+	}
+
+	changeState = (a) => {
+		this.setState({[a]: !this.state[a]});
+	}
+
+	configureDelete = () => {
+		if(this.state.delete) {
+			return (<button className="red" onClick={() => {
+
+					accessToDelete = false;
+					this.changeState('delete');
+			}}>Return it?</button>)
+
+		} else {
+			return (<button className="green" onClick={() => {
+
+					accessToDelete = true;
+					this.changeState('delete');
+			}}>Delete real tree</button>)
+		}
+	}
+
+	render() {
+		return (
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-auto">
+							<button className="red">Create new tree</button>
+							{this.configureDelete()}
+						</div>
+				</div>
+			</div>
+		)
+	}
+}
+</script>
+
+<script type="text/babel">
+
+	ReactDOM.render(
+		<FunctionBlock/>,
+		document.getElementById("functionalBlock")
+	)
+
+</script>
+
 <!-- 
-	*	Main content of the page that consists of
-	*	Few blocks with my ideas, goals, toDoTexts
-	*	And many others
- -->
+*	Main content of the page that consists of
+*	Few blocks with my ideas, goals, toDoTexts
+*	And many others
+-->
 
 <div id="mainContainer">
-	<div class="container-fluid">
+<div class="container-fluid">
 
-	</div>
+</div>
 </div>
 
 <script type="text/babel">
 
-	class InfoBlock extends React.Component {
-		constructor(props) {
-			super(props);
+class InfoBlock extends React.Component {
+	constructor(props) {
+		super(props);
 
-			this.state = {
+		this.state = {
 
-			}
-		}
-		ok = () => {
-			console.log("Ok");
-		}
-
-		render() {
-
-			return (<div className={this.props.title.toLowerCase()} onDoubleClick={this.ok}>
-				<h4>{this.props.data.title}</h4>
-				<h6>{this.props.data.text}</h6>
-				</div>)
 		}
 	}
+	ok = () => {
+		console.log("Ok");
+	}
 
-	class MainContainer extends React.Component {
-		constructor(props) {
-			super(props);
+	render() {
+
+		return (<div className="containers" onDoubleClick={this.ok}>
+			<h4>{this.props.data.title}</h4>
+			<h6>{this.props.data.text}</h6>
+			</div>)
+	}
+}
+
+class MainContainer extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		let data = {
+			title: "Your goal",
+			text: "Create copy of Trello"
 		}
 
-		render() {
-			let data = {
-				title: "Your goal",
-				text: "Create copy of Trello"
-			}
-
-			return (
-				<div className="col-auto">
-					<h1>{this.props.headText}</h1>
-					<ul>
-						<li><InfoBlock data={data} title={this.props.headText}/></li>
-						<li><InfoBlock data={data} title={this.props.headText}/></li>
-						<li><InfoBlock data={data} title={this.props.headText}/></li>
-						<li><InfoBlock data={data} title={this.props.headText}/></li>
-					</ul>
-				</div>
+		return (
+			<div className="col">
+			<h1>{this.props.headText}</h1>
+			<ul>
+			<li><InfoBlock data={data}/></li>
+			<li><InfoBlock data={data}/></li>
+			</ul>
+			</div>
 			)
-		}
 	}
+}
 </script>
 
 <script type="text/babel">
 
-	ReactDOM.render(
-		<div className="row justify-content-center align-items-center">
-			<MainContainer headText="Goals"/>
-			<MainContainer headText="Ideas"/>
-		</div>
-		,
-		document.querySelector("#mainContainer .container-fluid")
+ReactDOM.render(
+	<div className="row justify-content-center align-items-center">
+	<MainContainer headText="Goals"/>
+	<MainContainer headText="Ideas"/>
+	</div>
+	,
+	document.querySelector("#mainContainer .container-fluid")
 	)
 
 </script>
