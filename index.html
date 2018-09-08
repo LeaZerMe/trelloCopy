@@ -21,8 +21,9 @@
 <script type="text/babel">
 
 class Header extends React.Component {
+	
 	constructor(props) {
-		super(props)
+		super(props)	
 	}
 
 	render() {
@@ -61,15 +62,48 @@ class Header extends React.Component {
 </div>
 
 <script type="text/babel">
+
+	class InfoBlock extends React.Component {
+		constructor(props) {
+			super(props);
+
+			this.state = {
+
+			}
+		}
+		ok = () => {
+			console.log("Ok");
+		}
+
+		render() {
+
+			return (<div className={this.props.title.toLowerCase()} onDoubleClick={this.ok}>
+				<h4>{this.props.data.title}</h4>
+				<h6>{this.props.data.text}</h6>
+				</div>)
+		}
+	}
+
 	class MainContainer extends React.Component {
 		constructor(props) {
 			super(props);
 		}
 
 		render() {
+			let data = {
+				title: "Your goal",
+				text: "Create copy of Trello"
+			}
+
 			return (
 				<div className="col-auto">
 					<h1>{this.props.headText}</h1>
+					<ul>
+						<li><InfoBlock data={data} title={this.props.headText}/></li>
+						<li><InfoBlock data={data} title={this.props.headText}/></li>
+						<li><InfoBlock data={data} title={this.props.headText}/></li>
+						<li><InfoBlock data={data} title={this.props.headText}/></li>
+					</ul>
 				</div>
 			)
 		}
@@ -79,7 +113,7 @@ class Header extends React.Component {
 <script type="text/babel">
 
 	ReactDOM.render(
-		<div className="row justify-content-around align-items-center">
+		<div className="row justify-content-center align-items-center">
 			<MainContainer headText="Goals"/>
 			<MainContainer headText="Ideas"/>
 		</div>
