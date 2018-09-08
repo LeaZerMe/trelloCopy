@@ -85,3 +85,34 @@ header {
         -webkit-transform: translateX(10px);
         -ms-transform: translateX(10px);
         transform: translateX(10px); }
+
+#modalWindow {
+  text-align: center;
+  font-size: 2rem;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: auto; }
+  #modalWindow .col {
+    color: #fafafa;
+    background-color: #212529;
+    margin: auto;
+    position: relative;
+    top: 70%;
+    left: 0%;
+    width: 60%;
+    border: 2px outset #999;
+    padding: 20px; }
+  #modalWindow button {
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    color: #fafafa;
+    font-size: 1.6rem;
+    margin: 0 10px;
+    background-color: transparent; }
+    #modalWindow button:hover {
+      color: #212529;
+      background-color: #fafafa; }

@@ -19,6 +19,7 @@
 -->
 
 <script type="text/babel">
+var titlesListFromDb = ["Goals", "Ideas", "Supers"];
 class Header extends React.Component {
 	
 	constructor(props) {
@@ -59,8 +60,9 @@ ReactDOM.render(
 </div>
 
 <script type="text/babel">
-var listOfTitles = ["Goals", "Ideas", "Supers"];
+var listOfTitles = titlesListFromDb;
 var accessToDelete = false;	
+var modalIsTrue = false;
 
 class FunctionBlock extends React.Component {
 
@@ -77,6 +79,8 @@ class FunctionBlock extends React.Component {
 	}
 
 	configureDelete = () => {
+		console.log(modalIsTrue)
+		console.log(accessToDelete)
 		if(this.state.delete) {
 			return (<button className="blue" onClick={() => {
 
@@ -109,7 +113,6 @@ class FunctionBlock extends React.Component {
 </script>
 
 <script type="text/babel">
-
 	ReactDOM.render(
 		<FunctionBlock/>,
 		document.getElementById("functionalBlock")
@@ -130,13 +133,46 @@ class FunctionBlock extends React.Component {
 </div>
 
 <script type="text/babel">
+	class ModalWindow extends React.Component {
+		constructor(p) {
+			super(p);
+
+			this.state = {
+				func: this.props.func
+			};
+		}
+
+		accept = () => {
+			modalIsTrue = true;
+			this.state.func("");
+		}
+
+		reject = () => {
+			this.state.func("");
+		}
+
+		render() {
+			return (<div id="modalWindow">
+				<div className="col">
+									<p>Do you want delete this list?</p>
+									<button className="accept" onClick={this.accept}>Accept</button>
+									<button className="reject" onClick={this.reject}>Reject</button>
+						</div>
+			</div>);
+		}
+	}
+
+
+</script>	
+
+<script type="text/babel">
 
 class InfoBlock extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-
+			func: this.props.func
 		}
 	}
 	ok = () => {
@@ -167,8 +203,7 @@ class MainContainer extends React.Component {
 			return;
 		}
 
-		listOfTitles.splice(listOfTitles.indexOf(a), 1);
-		this.state.func();
+		this.state.func(a);
 	}
 
 	render() {
@@ -197,23 +232,57 @@ class LastOfComponents extends React.Component {
 		super(props);
 
 		this.state = {
-			s: false
+			s: false,
+			modalVisible: false
 		}
 	}
 
-	changeSomething = () => {
+	changeSomething = (a) => {
+		console.log(modalIsTrue)
+		console.log(this.state.modalVisible)
+		if(modalIsTrue) {
+			listOfTitles.splice(listOfTitles.indexOf(a), 1);
+		} else {
+			this.setState({modalVisible: !this.state.modalVisible})
+		}
+
 		this.setState({s: !this.state.s});
 	}
 
 	render() {
-		return (
-			<div className="row justify-content-center align-items-center">
-				{
-					listOfTitles.map((a) => {
-						return <MainContainer key={a} headText={a} func={this.changeSomething}/>
-					})	
-				}	
-			</div>)
+		if(modalIsTrue) {
+			modalIsTrue = false;
+			accessToDelete = false;
+			return (
+				<div className="row justify-content-center align-items-center">
+					{
+						listOfTitles.map((a) => {
+							return <MainContainer key={a} headText={a} func={this.changeSomething}/>
+						})	
+					}
+				</div>)
+		} else if(!modalIsTrue && !this.state.modalVisible){
+
+			return (
+				<div className="row justify-content-center align-items-center">
+					{
+						listOfTitles.map((a) => {
+							return <MainContainer key={a} headText={a} func={this.changeSomething}/>
+						})	
+					}
+				</div>)
+		} else {
+			return (
+				<div className="row justify-content-center align-items-center">
+					{
+						listOfTitles.map((a) => {
+							return <MainContainer key={a} headText={a} func={this.changeSomething}/>
+						})	
+					}
+					<ModalWindow func={this.changeSomething}/>
+				</div>)
+		}
+		
 	}
 }
 
@@ -222,22 +291,6 @@ ReactDOM.render(
 	document.querySelector("#mainContainer .container-fluid")
 )
 
-</script>
-
-<script type="text/babel">
-	class ModalWindow extends React.Component {
-		constructor(p) {
-			super(p);
-
-			this.state = {
-
-			};
-		}
-
-		render() {
-			return ();
-		}
-	}
 </script>
 <script src="bundle.js"></script>
 </body>
