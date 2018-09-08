@@ -11,12 +11,19 @@
 </head>
 <body>
 <div id='header'></div>
+
+<!-- 
+	* Header component, that create header of the page 
+	* And dont take any parametrs
+ -->
+
 <script type="text/babel">
 
 class Header extends React.Component {
 	constructor(props) {
 		super(props)
 	}
+
 	render() {
 		return <header>				
 		<div className="container-fluid">
@@ -39,6 +46,8 @@ class Header extends React.Component {
 		document.getElementById("header")
 	)
 </script>
+
+<div id="mainContainer"></div>
 
 <script src="index.js"></script>
 </body>
