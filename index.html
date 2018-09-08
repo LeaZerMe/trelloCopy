@@ -8,13 +8,14 @@
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div id='header'></div>
 
 <!-- 
-	* Header component, that create header of the page 
-	* And dont take any parametrs
+	*	Header component, that create header of the page 
+	*	And dont take any parametrs
  -->
 
 <script type="text/babel">
@@ -25,19 +26,19 @@ class Header extends React.Component {
 	}
 
 	render() {
-		return <header>				
-		<div className="container-fluid">
-		<div className="row justify-content-between align-items-center">
-		<div className="col-auto">
-			<h3>Trello</h3>
-		</div>
-		<div className="col-auto">
-			<h4>
-				Make your life
-			</h4>
-		</div>
-		</div>
-		</div></header>
+		return (<header>				
+				<div className="container-fluid">
+				<div className="row justify-content-between align-items-center">
+				<div className="col-auto">
+					<h3>Trello</h3>
+				</div>
+				<div className="col-auto">
+					<h4>
+						Make your life
+					</h4>
+				</div>
+				</div>
+				</div></header>)
 	}	
 }
 
@@ -47,8 +48,46 @@ class Header extends React.Component {
 	)
 </script>
 
-<div id="mainContainer"></div>
+<!-- 
+	*	Main content of the page that consists of
+	*	Few blocks with my ideas, goals, toDoTexts
+	*	And many others
+ -->
 
-<script src="index.js"></script>
+<div id="mainContainer">
+	<div class="container-fluid">
+
+	</div>
+</div>
+
+<script type="text/babel">
+	class MainContainer extends React.Component {
+		constructor(props) {
+			super(props);
+		}
+
+		render() {
+			return (
+				<div className="col-auto">
+					<h1>{this.props.headText}</h1>
+				</div>
+			)
+		}
+	}
+</script>
+
+<script type="text/babel">
+
+	ReactDOM.render(
+		<div className="row justify-content-around align-items-center">
+			<MainContainer headText="Goals"/>
+			<MainContainer headText="Ideas"/>
+		</div>
+		,
+		document.querySelector("#mainContainer .container-fluid")
+	)
+
+</script>
+<script src="bundle.js"></script>
 </body>
 </html>
