@@ -20,17 +20,18 @@ class MainContainer extends React.Component {
 	}
 
 	render() {
-		let data = {
-			title: "Your goal",
-			text: "Create copy of Trello"
-		}
+		let data = [{ title: "Your goal", text: "Create copy of Trello"},
+		{ title: "Vova is cool", text: "Lets do it"}]
 
 		return (
 			<div className="col">
 			<h1 onClick={() => {this.configureList(this.props.headText)}}>{this.props.headText}</h1>
 			<ul>
-			<li><InfoBlock data={data}/></li>
-			<li><InfoBlock data={data}/></li>
+			{ 
+				data.map((data) => {
+					return <li><InfoBlock data={data}/></li>
+				})			
+			}			
 			</ul>
 			</div>
 			)
