@@ -1,5 +1,5 @@
-var logIt = require('./log.js').greet;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Page from '../jsx/allPage.jsx'
 
-exports.new = function() {
-	console.log("+ + +");
-};
+ReactDOM.render(<Page/>, document.getElementById('containerForAll'));
