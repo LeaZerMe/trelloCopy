@@ -9,9 +9,11 @@ class ParentOfOthers extends React.Component {
 	constructor(p) {
 		super(p);
 		this.notifyAboutDelete = this.notifyAboutDelete.bind(this);
+		this.notifyAboutAdd = this.notifyAboutAdd.bind(this);
 
 		this.state = {
-			deleted: false
+			deleted: false,
+			addingAdd: false
 		}
 	}
 
@@ -23,10 +25,14 @@ class ParentOfOthers extends React.Component {
 		}	
 	}
 
+	notifyAboutAdd() {
+		this.setState({addingAdd: !this.state.addingAdd})
+	}
+
 	render() {
 		return (<div>
 			<Header/>
-			<FunctionBlock it={this.state.deleted} notifyDelete={this.notifyAboutDelete}/>
+			<FunctionBlock it={this.state.deleted} notifyDelete={this.notifyAboutDelete} notifyAdd={this.notifyAboutAdd}/>
 			<LastOfComponents notifyDelete={this.notifyAboutDelete}/>
 			</div>)
 	}

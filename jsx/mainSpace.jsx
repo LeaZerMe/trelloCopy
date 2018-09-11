@@ -22,6 +22,8 @@ class LastOfComponents extends React.Component {
 		}
 	}
 
+	
+
 	render() {
 		
 		if(titleList.states.modalIsTrue) {

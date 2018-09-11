@@ -176,5 +176,21 @@ header {
 	padding: 20px;
 	box-shadow: -2px 1px 2px #5C36E5;
 	border-radius: 30px;
+
+	label {
+		font-size: 1.2rem;
+		margin-right: 20px;
+	}
+
+	h4 {
+		margin-bottom: 10px;
+	}
+
+	#submitAdding {
+		margin-left: 10px;
+		font-size: 1.5rem;
+		border: 1px solid grey;
+		border-radius: 10px;
+	}
 }
 

@@ -29,7 +29,9 @@ class FunctionBlock extends React.Component {
 		if(this.state.delete && !this.props.it && !this.state.save) {
 			return (<button className="blue" onClick={() => {
 					if(this.state.save) {
-						return;
+						FunctionBlock.states.accessToDelete = true;
+						this.changeState('save');
+						this.changeState('delete');
 					}
 					FunctionBlock.states.accessToDelete = false;
 					this.changeState('delete');				
@@ -39,7 +41,9 @@ class FunctionBlock extends React.Component {
 		} else {
 			return (<button className="red" onClick={() => {
 					if(this.state.save) {
-						return;
+						FunctionBlock.states.accessToDelete = true;
+						this.changeState('save');
+						this.changeState('delete');
 					}
 					FunctionBlock.states.accessToDelete = true;
 					this.changeState('delete');	
@@ -53,7 +57,9 @@ class FunctionBlock extends React.Component {
 			return (<span>
 				<button className="blue" onClick={() => {
 					if(this.state.delete) {
-						return;
+						FunctionBlock.states.accessToDelete = false;
+						this.changeState('save');
+						this.changeState('delete');
 					}
 					this.changeState('save');				
 				}}>Return it?</button></span>)
@@ -61,7 +67,9 @@ class FunctionBlock extends React.Component {
 		} else {
 			return (<button className="green" onClick={() => {
 				if(this.state.delete) {
-					return;
+						FunctionBlock.states.accessToDelete = false;
+						this.changeState('save');
+						this.changeState('delete');
 				}
 				this.changeState('save');	
 			}}>Create new tree</button>)
@@ -71,18 +79,28 @@ class FunctionBlock extends React.Component {
 	createIt() {
 		if(this.state.save) {
 			return (<div id="animateArticle">
+
 				<div className="container-fluid">
 						<div className="row">
-						<div className="col-auto">
+						<div className="col-auto">						
+							<h4>Add the new one</h4>
 							<label>Name</label>
-							<input type="text"/>
-							<p>Super</p>
+							<input ref="name" type="text"/>
+							<button id="submitAdding" onClick={() => {this.addOneList(this.refs.name.value)}}>Ok</button>
 						</div>
 						</div>
 						</div>
 				</div>)
 		}
 		
+	}
+
+	addOneList(val) {
+		if(!val) {
+			return;
+		}
+		FunctionBlock.states.val.push(val);
+		this.props.notifyAdd();
 	}
 
 	render() {
