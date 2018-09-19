@@ -1,5 +1,10 @@
 import React from 'react';
 import it from '../scripts/requestAjax.js';
+import {connect} from "react-redux";
+import {addArticle} from '../assets/redux/actions.js';
+import {setDeleteAccess} from '../assets/redux/actions.js';
+import {removeArticle} from '../assets/redux/actions.js';
+import store from '../assets/redux/store.js';
 
 class FunctionBlock extends React.Component {
 
@@ -13,27 +18,17 @@ class FunctionBlock extends React.Component {
 	}
 
 	changeState(a) {
-		if(a == "delete") {
-			if(this.props.it) {
-				this.props.notifyDelete(0);
-				FunctionBlock.states.accessToDelete = true;
-				return;
-			}
-		}
-		
 		this.setState({[a]: !this.state[a]});	
 	}
 
 	configureDelete() {
-
-		if(this.state.delete && !this.props.it && !this.state.save) {
+		if(this.state.delete && !this.state.save) {
 			return (<button className="blue" onClick={() => {
 					if(this.state.save) {
-						FunctionBlock.states.accessToDelete = true;
-						this.changeState('save');
-						this.changeState('delete');
+						return;
 					}
-					FunctionBlock.states.accessToDelete = false;
+
+					this.props.setDeleteAccess(false);
 					this.changeState('delete');				
 				}
 			}>Return it?</button>)
@@ -41,12 +36,13 @@ class FunctionBlock extends React.Component {
 		} else {
 			return (<button className="red" onClick={() => {
 					if(this.state.save) {
-						FunctionBlock.states.accessToDelete = true;
+						this.props.setDeleteAccess(true);
 						this.changeState('save');
 						this.changeState('delete');
+						return;
 					}
-					FunctionBlock.states.accessToDelete = true;
 					this.changeState('delete');	
+					this.props.setDeleteAccess(true);
 				}
 			}>Delete real tree</button>)
 		}
@@ -57,9 +53,7 @@ class FunctionBlock extends React.Component {
 			return (<span>
 				<button className="blue" onClick={() => {
 					if(this.state.delete) {
-						FunctionBlock.states.accessToDelete = false;
-						this.changeState('save');
-						this.changeState('delete');
+						return;
 					}
 					this.changeState('save');				
 				}}>Return it?</button></span>)
@@ -67,9 +61,11 @@ class FunctionBlock extends React.Component {
 		} else {
 			return (<button className="green" onClick={() => {
 				if(this.state.delete) {
-						FunctionBlock.states.accessToDelete = false;
+
 						this.changeState('save');
 						this.changeState('delete');
+						this.props.setDeleteAccess(false);
+						return;
 				}
 				this.changeState('save');	
 			}}>Create new tree</button>)
@@ -86,7 +82,7 @@ class FunctionBlock extends React.Component {
 							<h4>Add the new one</h4>
 							<label>Name</label>
 							<input ref="name" type="text"/>
-							<button id="submitAdding" onClick={() => {this.addOneList(this.refs.name.value)}}>Ok</button>
+							<button id="submitAdding" onClick={() => {this.addOneList(this.refs.name.value); this.refs.name.value = ""}}>Ok</button>
 						</div>
 						</div>
 						</div>
@@ -99,12 +95,17 @@ class FunctionBlock extends React.Component {
 		if(!val) {
 			return;
 		}
-		FunctionBlock.states.val.push(val);
-		this.props.notifyAdd();
+
+		for(let i = 0; i < this.props.titles.articles.length; i++) {
+			if(this.props.titles.articles[i].title == val) {
+				return;
+			}
+		}
+
+		this.props.addArticle(val)
 	}
 
 	render() {
-
 		return (<div id="functionalBlock">
 				<div className="container-fluid">
 				<div className="row">
@@ -119,10 +120,16 @@ class FunctionBlock extends React.Component {
 	}
 }
 
-FunctionBlock.states = {
-	val: it.requestIt(),
-	accessToDelete: false,
-	modalIsTrue: false
-} 
+const mapStateToProps = state => {
+  return { titles: state };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    addArticle: (article) => dispatch(addArticle(article)),
+    setDeleteAccess: (state) => dispatch(setDeleteAccess(state))
+  };
+};
 
-export default FunctionBlock;
+const List = connect(mapStateToProps,mapDispatchToProps)(FunctionBlock);
+
+export default List;

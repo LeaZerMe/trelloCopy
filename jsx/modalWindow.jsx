@@ -1,26 +1,25 @@
 import React from 'react';
 import titleList from './functions.jsx';
+import {connect} from "react-redux";
+import {removeArticle} from '../assets/redux/actions.js';
+import {changeModal} from '../assets/redux/actions.js';
+import store from '../assets/redux/store.js';
 
 class ModalWindow extends React.Component {
 	constructor(p) {
 		super(p);
-
-		this.state = {
-			func: this.props.func
-		};
 
 		this.accept = this.accept.bind(this);
 		this.reject = this.reject.bind(this);
 	}
 
 	accept() {
-		titleList.states.modalIsTrue = true;
-		this.state.func(0);
-		this.props.notifyDelete(1);
+		this.props.removeArticle(this.props.value);
+		this.props.changeModal(false);
 	}
 
 	reject() {
-		this.state.func(1);
+		this.props.changeModal(false);
 	}
 
 	render() {
@@ -33,5 +32,19 @@ class ModalWindow extends React.Component {
 			</div>);
 	}
 }
+const mapStatetoProps = state => {
+ 	return {
+ 	 	value: state.deletingValue
+	} 
+};
 
-export default ModalWindow;
+const mapDispatchToProps = dispatch => {
+  return {
+    removeArticle: (article) => dispatch(removeArticle(article)),
+    changeModal: (article) => dispatch(changeModal(article))
+  };
+};
+
+const List = connect(mapStatetoProps,mapDispatchToProps)(ModalWindow);
+
+export default List;

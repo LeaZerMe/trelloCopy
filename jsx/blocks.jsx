@@ -10,7 +10,7 @@ class InfoBlock extends React.Component {
 
 	render() {
 
-		return (<div className="containers" onDoubleClick={this.ok}>
+		return (<div className="containers" onDoubleClick={this.ok} key={this.props.data.title.toLowerCase()}>
 			<h4>{this.props.data.title}</h4>
 			<h6>{this.props.data.text}</h6>
 			</div>)
