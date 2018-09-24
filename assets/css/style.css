@@ -1,12 +1,10 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #ebebeb;
+  background: #ebebeb;
   font-family: "Comic Sans MS", cursive; }
 
-button,
-button:active,
-button:focus {
+* {
   outline: none; }
 
 header {
@@ -45,6 +43,16 @@ header {
   margin-top: 20px; }
   #mainContainer h1 {
     margin-bottom: 20px; }
+    #mainContainer h1:hover {
+      cursor: pointer; }
+    #mainContainer h1 .hideBtn {
+      font-size: 2rem; }
+    #mainContainer h1 .red {
+      color: red; }
+    #mainContainer h1 .green {
+      color: green; }
+    #mainContainer h1 .blue {
+      color: blue; }
   #mainContainer .col ul {
     margin: 0;
     padding: 0;
@@ -52,6 +60,34 @@ header {
     #mainContainer .col ul li {
       height: 100px;
       width: 200px; }
+    #mainContainer .col ul .add {
+      font-size: 3rem;
+      transition: all 0.4s ease-in; }
+      #mainContainer .col ul .add:hover {
+        text-shadow: 2px 1px 1px #000;
+        transition: all 0.2s ease-out;
+        color: #FCB215;
+        cursor: pointer; }
+    #mainContainer .col ul .addU {
+      text-align: center; }
+  #mainContainer .col .creatingBlock {
+    display: table-cell; }
+    #mainContainer .col .creatingBlock label {
+      font-size: 1.4rem;
+      vertical-align: top;
+      margin-right: 10px;
+      margin-bottom: 10px; }
+    #mainContainer .col .creatingBlock input {
+      margin-bottom: 20px; }
+    #mainContainer .col .creatingBlock button {
+      margin-right: 40px;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      background-color: #FCB215;
+      padding: 5px 15px;
+      color: #111;
+      border: none;
+      border-radius: 10px; }
   #mainContainer .col .containers {
     transition: all 0.5s ease;
     border: 2px outset #79AAE5;

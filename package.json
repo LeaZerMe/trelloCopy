@@ -10,8 +10,8 @@
     ]
   },
   "scripts": {
-    "hot": "webpack-dev-server --content-base --hot --inline",
-    "build": "webpack --watch",
+    "wp": "webpack --watch",
+    "babel": "babel assetsCop -d assets && babel jsx -d components",
     "start": "nodemon --exec babel-node server.js",
     "startDev": "webpack-dev-server --mode development",
     "build-css": "node-sass --include-path scss assets/scss/style.scss assets/css/style.css",
@@ -21,7 +21,8 @@
     "express": "^4.16.3",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "webpack-shell-plugin": "^0.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
