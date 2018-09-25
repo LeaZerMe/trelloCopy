@@ -10,10 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _requestAjax = require('../scripts/requestAjax.js');
-
-var _requestAjax2 = _interopRequireDefault(_requestAjax);
-
 var _reactRedux = require('react-redux');
 
 var _actions = require('../assets/redux/actions.js');
